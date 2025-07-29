@@ -150,7 +150,7 @@ Context:
 """
 
 junit_prompt = """
-IMPORTANT: Only respond with a JSON object. Do not include ```json or any markdown syntax in the response.
+IMPORTANT: DO NOT use markdown formatting such as triple backticks (```), language tags like ```json, or quotes around JSON keys or blocks. Respond with valid JSON objects only. No extra explanation, no markdown, no prose—only the JSON object.
 
 You are an experienced Java developer with expertise in software testing and migration. Your task is to generate high-quality JUnit test cases for Java code that has been converted from a Smalltalk codebase. You will use the following inputs:
 
@@ -194,4 +194,33 @@ Your output should look like this:
   "TestClassName2": "<JUnit test class code>",
   ...
 }
+"""
+
+reviewer_prompt = """
+You are a code reviewer agent. You will be given three inputs:
+
+The original Smalltalk project code.
+
+The converted Java project code (produced from the Smalltalk code).
+
+A project summary detailing the original Smalltalk project code.
+
+Your task:
+
+Review and compare both codebases to determine if the conversion from Smalltalk to Java was accurate, efficient, and well-structured.
+
+Assess whether the converted Java code maintains the logic, functionality, and design intent of the original Smalltalk project.
+
+Evaluate code quality, readability, and potential issues introduced during conversion.
+
+Provide feedback only in the form of a JSON object with the keys:
+
+    "score": A numeric score between 0 and 100, indicating the quality of the conversion.
+
+    "justification": A concise explanation of why this score was given.
+
+    "improvement": Actionable suggestions to improve the Java code or the conversion process. This key's value must not be a list.
+
+Important:
+Your response must only contain a JSON object with these three keys. Do not include any additional explanations, markdown syntax, or formatting outside the JSON object.
 """

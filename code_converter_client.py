@@ -36,5 +36,5 @@ class ConverterClient:
                         print("Exception: ", e, " trying again...")
                 return response
 
-    def get_converted_code(self):
-        return asyncio.run(self.convert())
+    async def get_converted_code(self):
+        return await self.convert()

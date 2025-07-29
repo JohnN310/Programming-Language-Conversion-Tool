@@ -1,7 +1,6 @@
 import google.generativeai as genai
 from dotenv import load_dotenv
 import os 
-from openai import OpenAI
 class CustomLLM:
     def __init__(self):
         pass

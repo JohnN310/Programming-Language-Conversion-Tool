@@ -24,8 +24,8 @@ class ScannerClient:
                 response = customllm.generate_response(prompt=prompt)
                 return response
 
-    def get_scanned(self):
-        return asyncio.run(self.scan())
+    async def get_scanned(self):
+        return await self.scan()
     
 # scanner = ScannerClient(folder_path= "C:/Users/anhkh/Downloads/Github/Legacy Code Migration Tool/smalltalk_project")
 # print(scanner.get_scanned())

@@ -30,5 +30,5 @@ class DependencyClient:
                 response = customllm.generate_response(prompt=prompt)
                 return response
 
-    def get_dependency(self):
-        return asyncio.run(self.dependency())
+    async def get_dependency(self):
+        return await self.dependency()

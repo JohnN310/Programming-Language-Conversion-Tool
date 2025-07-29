@@ -6,13 +6,13 @@ import asyncio
 from scanner_client import customllm
 import json
 
-class JuinitClient:
+class ReviewerClient:
     def __init__(self, folder_path, project_summary, java_code_file_path):
         self.folder_path = folder_path
         self.project_summary = project_summary
         self.java_code_file_path = java_code_file_path
 
-    async def junit(self):
+    async def review(self):
         async with sse_client(url="http://localhost:8000/sse") as (read, write):
             async with ClientSession(read, write) as session:
                 if hasattr(session, "initialize"):
@@ -25,8 +25,8 @@ class JuinitClient:
                 java_code = java_code.content[0].text
 
                 prompt = (
-                    "Here is your task:\n" +
-                    junit_prompt +
+                    "Here is your task:/n" +
+                    reviewer_prompt +
                     "\nHere is the project summary for reference:\n" +
                     self.project_summary +
                     "\nHere is the converted java code:\n"+
@@ -43,12 +43,9 @@ class JuinitClient:
                         print("Exception: ", e, " trying again...")
                 return response
 
-    async def get_junit(self):
-        return await self.junit()
-
-    # def get_junit(self):
-    #     return asyncio.run(self.junit())
+    async def get_reviewer(self):
+        return await self.review()
     
-# junit = JuinitClient(folder_path= "C:/Users/anhkh/Downloads/Github Local Folder/Legacy Code Migration Tool/Local_folder/smalltalk_project", project_summary= "This is a smalltalk project", java_code_file_path= "java_code.md").get_junit()
-# print(junit)
-# print(type(junit))  
+# review = ReviewerClient(folder_path= "C:/Users/anhkh/Downloads/Github Local Folder/Legacy Code Migration Tool/Local_folder/smalltalk_project", project_summary= "this is some smalltalk code", java_code_file_path= "java_code.md").get_reviewer()
+# print(review)
+# print(review["improvement"])

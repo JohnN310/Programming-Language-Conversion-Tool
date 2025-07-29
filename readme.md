@@ -21,7 +21,7 @@ Developed with an **Agentic AI architecture**, this solution allows the **FSSTAR
 - **Model Context Protocol (MCP):**  
   Establishes shared project context for better translation accuracy.
 
-- **Agent-to-Agent (A2A) Communication:**  
+- **Agent Communication Protocol (ACP):**  
   Agents collaborate autonomously to perform scanning, translation, and evaluation in a pipeline.
 
 - **Modular and Extensible Design:**  
@@ -51,3 +51,6 @@ Developed with an **Agentic AI architecture**, this solution allows the **FSSTAR
 
 4. **Testing:**  
    The JUnit agent creates test cases to validate the translated Java code.
+
+5. **Evaluating**
+    The Reviewer agent performs a deep evaluation on the other agents' performance. 
